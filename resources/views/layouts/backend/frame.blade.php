@@ -29,8 +29,7 @@
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -63,7 +62,7 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="/bootcss/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>Alexander Pierce</p>
@@ -86,7 +85,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{route('back.home')}}"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">@yield('one-level')</a></li>
+                <li><a href="javascript:void(0);">@yield('one-level')</a></li>
                 <li class="active">@yield('two-level')</li>
             </ol>
         </section>
@@ -116,6 +115,7 @@
 <script src="/bootcss/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="/bootcss/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/bootcss/dist/js/adminlte.min.js"></script>
 @yield('load_js')
 </body>
 </html>
