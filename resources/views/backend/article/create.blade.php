@@ -14,6 +14,9 @@
     <script src="/markdown/simplemde.min.js"></script>
     <script>
         var simplemde = new SimpleMDE();
+        simplemde.codemirror.on("change", function(){
+            $("#markdown").text(simplemde.value());
+        });
     </script>
 @stop
 
@@ -28,7 +31,7 @@
                 </div>
                 <div class="form-group">
                     <label>分类</label>
-                    <select name="article_id" class="form-control">
+                    <select name="category_id" class="form-control">
                         @if($category)
                             @foreach($category as $value)
                                 <option value="{{ $value->id }}">{{ $value->name }}</option>

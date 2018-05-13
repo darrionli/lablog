@@ -29,6 +29,6 @@ class ArticleController extends Controller
     // 添加文章
     public function store(Store $request, Article $article)
     {
-        dd($request);
+        // $article->
     }
 }
