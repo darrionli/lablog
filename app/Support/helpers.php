@@ -1,7 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lidi0
- * Date: 2018/5/29
- * Time: 22:12
- */
+
+use HyperDown\Parser;
+
+if( !function_exists('markdownToHtml') ){
+	/**
+	 * 将markdown语法转换为html
+	 */
+	function markdownToHtml($str)
+	{
+		$parser = new Parser;
+		$html = $parser->makeHtml($str);
+		return $html;
+	}
+}

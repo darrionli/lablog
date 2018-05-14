@@ -23,7 +23,7 @@ Route::prefix('backend')->namespace('Backend')->group(function(){
     Route::delete('logout', 'LoginController@logout')->name('back.logout');
 });
 
-Route::group(['prefix'=>'backend', 'namespace'=>'backend'], function(){
+Route::group(['prefix'=>'backend', 'namespace'=>'Backend'], function(){
     // 首页
     Route::get('home', 'HomeController@index')->name('back.home');
 
@@ -34,5 +34,18 @@ Route::group(['prefix'=>'backend', 'namespace'=>'backend'], function(){
         // 添加文章
         Route::get('create', 'ArticleController@create')->name('back.art.create');
         Route::post('store', 'ArticleController@store')->name('back.art.store');
+        // 文章编辑
+        Route::get('edit/{id}', 'ArticleController@edit')->name('back.art.edit');
+        Route::post('update/{id}', 'ArticleController@update')->name('back.art.update');
+        // 文章删除
+        Route::get('destroy/{id}', 'ArticleController@destroy')->name('back.art.destroy');
+        // 文章恢复
+        Route::get('restore/{id}', 'ArticleController@restore')->name('back.art.restore');
+    });
+
+    // 分类管理
+    Route::group(['prefix'=>'category'], function(){
+        // 分类列表
+        Route::get('index', 'CategoryController@index')->name('back.cate.index');
     });
 });
