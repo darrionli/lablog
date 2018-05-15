@@ -58,4 +58,10 @@ Route::group(['prefix'=>'backend', 'namespace'=>'Backend'], function(){
         // 恢复
         Route::get('restore/{id}', 'CategoryController@restore')->name('back.cate.restore');
     });
+
+    // 标签管理
+    Route::group(['prefix'=>'label'], function(){
+        // 列表
+        Route::get('index', 'LabelController@index')->name('back.label.index');
+    });
 });

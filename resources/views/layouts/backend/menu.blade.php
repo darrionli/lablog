@@ -32,8 +32,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li><a href="{{ route('back.label.index') }}"><i class="fa fa-circle-o"></i>标签列表</a></li>
         </ul>
     </li>
     <li class="treeview">
