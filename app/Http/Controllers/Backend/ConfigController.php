@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use App\Models\Config;
 use App\Http\Controllers\Controller;
 
 class ConfigController extends Controller
@@ -13,7 +14,9 @@ class ConfigController extends Controller
      */
     public function index()
     {
-        return view('backend.config.index');
+        $config = Config::pluck('val', 'name');
+        $assign = compact('config');
+        return view('backend.config.index', $assign);
     }
 
     /**

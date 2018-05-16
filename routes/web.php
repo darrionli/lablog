@@ -78,5 +78,6 @@ Route::group(['prefix'=>'backend', 'namespace'=>'Backend'], function(){
     // 网站管理
     Route::group(['prefix'=>'config'], function(){
         Route::get('index', 'ConfigController@index')->name('back.config.index');
+        Route::post('store', 'ConfigController@store')->name('back.config.store');
     });
 });
