@@ -10,8 +10,8 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest',[
-            'only'=>['index','store']
+        $this->middleware('auth',[
+            'except'=>['index','store']
         ]);
     }
 
