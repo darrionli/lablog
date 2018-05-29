@@ -83,6 +83,8 @@
                 @yield('two-level')
                 <small>@yield('one-level')</small>
             </h1>
+            @include('common.backend_flash_msg')
+            @include('common.backend_error_msg')
             <ol class="breadcrumb">
                 <li><a href="{{route('back.home')}}"><i class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a href="javascript:void(0);">@yield('one-level')</a></li>
@@ -95,7 +97,6 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box box-primary">
-                        @include('common.backend_error')
                         @yield('content')
                     </div>
                     <!-- /.box -->

@@ -29,6 +29,11 @@ class ArticleController extends Controller
     // 添加文章
     public function store(Store $request, Article $article)
     {
-        // $article->
+        $data = $request->except('_token');
+        $result = $article->saveArticle($data);
+        if($result){
+
+        }
+        return redirect()->route('back.art.index');
     }
 }

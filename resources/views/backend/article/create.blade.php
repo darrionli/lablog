@@ -57,7 +57,7 @@
                     <input type="radio" name="is_top" value="1">是
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary">确认发布</button>
+                    <input class="btn btn-primary" type="submit" value="提交">
                 </div>
             </form>
         </div>
