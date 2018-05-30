@@ -45,7 +45,17 @@ Route::group(['prefix'=>'backend', 'namespace'=>'Backend'], function(){
 
     // 分类管理
     Route::group(['prefix'=>'category'], function(){
-        // 分类列表
+        // 列表
         Route::get('index', 'CategoryController@index')->name('back.cate.index');
+        // 添加
+        Route::get('create', 'CategoryController@create')->name('back.cate.create');
+        Route::post('store', 'CategoryController@store')->name('back.cate.store');
+        // 更新
+        Route::get('edit/{id}', 'CategoryController@edit')->name('back.cate.edit');
+        Route::post('update/{id}', 'CategoryController@update')->name('back.cate.update');
+        // 删除
+        Route::get('destroy/{id}', 'CategoryController@destroy')->name('back.cate.destroy');
+        // 恢复
+        Route::get('restore/{id}', 'CategoryController@restore')->name('back.cate.restore');
     });
 });

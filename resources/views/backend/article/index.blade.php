@@ -7,19 +7,6 @@
 @section('two-level', '文章列表')
 
 @section('content')
-
-@section('load_js')
-<script>
-
-    // 删除
-    function softdelete(obj)
-    {
-        if(confirm('确认删除该文章吗？')){
-            window.location.href = '/backend/'
-        }
-    }
-</script>
-@stop
 <div class="box-body">
     <table class="table table-bordered table-hover">
         <thead>

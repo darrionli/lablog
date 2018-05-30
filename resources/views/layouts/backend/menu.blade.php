@@ -21,6 +21,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="{{ route('back.cate.index') }}"><i class="fa fa-circle-o"></i>分类列表</a></li>
+            <li><a href="{{ route('back.cate.create') }}"><i class="fa fa-circle-o"></i>添加分类</a></li>
         </ul>
     </li>
     <li class="treeview">

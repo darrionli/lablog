@@ -2,27 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Article extends Model
+class Article extends Base
 {
-    use SoftDeletes;
-
-    /**
-     * 需要转换成日期的属性
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
-
-    /**
-     * 禁止被批量赋值的字段
-     *
-     * @var array
-     */
-    protected $guarded = [];
-
     /**
      * 关联分类表
      *
@@ -59,13 +41,5 @@ class Article extends Model
             session()->flash('danger', '添加失败');
             return false;
         }
-    }
-
-    /**
-     * 更新文章
-     */
-    public function updateArticle()
-    {
-
     }
 }
