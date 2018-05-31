@@ -14,7 +14,7 @@
     </li>
     <li class="treeview">
         <a href="#">
-            <i class="glyphicon glyphicon-list-alt"></i> <span>分类管理</span>
+            <i class="glyphicon glyphicon-folder-open"></i> <span>分类管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -26,7 +26,7 @@
     </li>
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-dashboard"></i> <span>标签管理</span>
+            <i class="glyphicon glyphicon-tags"></i> <span>标签管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -37,26 +37,24 @@
     </li>
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-dashboard"></i> <span>评论管理</span>
+            <i class="glyphicon glyphicon-pencil"></i> <span>评论管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i>评论列表</a></li>
         </ul>
     </li>
     <li class="treeview">
         <a href="#">
-            <i class="fa fa-dashboard"></i> <span>网站管理</span>
+            <i class="glyphicon glyphicon-cog"></i> <span>网站管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li><a href="{{ route('back.config.index') }}"><i class="fa fa-circle-o"></i> 配置项</a></li>
         </ul>
     </li>
 </ul>

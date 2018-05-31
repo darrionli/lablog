@@ -39,10 +39,10 @@
                         <td>{{ $value->created_at }}</td>
                         <td>{{ $value->updated_at }}</td>
                         <td>
-                            <a href="{{ route('back.art.edit', [$value->id]) }}" class="btn btn-primary btn-sm">编辑</a>
                             @if($value->trashed())
                                 <a href="javascript:if(confirm('确认恢复该文章吗？')) window.location.href='{{ route('back.art.restore', [$value->id]) }}'" class="btn btn-success btn-sm">恢复</a>
                             @else
+                                <a href="{{ route('back.art.edit', [$value->id]) }}" class="btn btn-primary btn-sm">编辑</a>
                                 <a href="javascript:if(confirm('确认删除该文章吗？')) window.location.href='{{ route('back.art.destroy', [$value->id]) }}'" class="btn btn-warning btn-sm">删除</a>
                             @endif
                         </td>

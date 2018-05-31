@@ -74,4 +74,9 @@ Route::group(['prefix'=>'backend', 'namespace'=>'Backend'], function(){
         // 恢复
         Route::get('restore/{id}', 'LabelController@restore')->name('back.label.restore');
     });
+
+    // 网站管理
+    Route::group(['prefix'=>'config'], function(){
+        Route::get('index', 'ConfigController@index')->name('back.config.index');
+    });
 });
