@@ -63,5 +63,15 @@ Route::group(['prefix'=>'backend', 'namespace'=>'Backend'], function(){
     Route::group(['prefix'=>'label'], function(){
         // 列表
         Route::get('index', 'LabelController@index')->name('back.label.index');
+        // 添加
+        Route::get('create', 'LabelController@create')->name('back.label.create');
+        Route::post('store', 'LabelController@store')->name('back.label.store');
+        // 更新
+        Route::get('edit/{id}', 'LabelController@edit')->name('back.label.edit');
+        Route::post('update/{id}', 'LabelController@update')->name('back.label.update');
+        // 删除
+        Route::get('destroy/{id}', 'LabelController@destroy')->name('back.label.destroy');
+        // 恢复
+        Route::get('restore/{id}', 'LabelController@restore')->name('back.label.restore');
     });
 });
