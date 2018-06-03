@@ -22,8 +22,15 @@ class ConfigController extends Controller
     /**
      * 修改配置
      */
-    public function store(Request $request)
+    public function store(Request $request, Config $config)
     {
-
+        $data = $request->except('_token');
+        $result = $config->updatePatch($data);
+        if($result){
+            session()->flash('success', '更新成功');
+        }else{
+            session()->flash('danger', '更新失败');
+        }
+        return redirect()->route('back.config.index');
     }
 }

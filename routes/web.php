@@ -18,12 +18,12 @@
  */
 Route::prefix('backend')->namespace('Backend')->group(function(){
     // 登录
-    Route::get('login', 'LoginController@index')->name('back.login');
+    Route::get('login', 'LoginController@index')->name('back.login')->middleware('admin.login');
     Route::post('login', 'LoginController@store')->name('back.login');
     Route::delete('logout', 'LoginController@logout')->name('back.logout');
 });
 
-Route::group(['prefix'=>'backend', 'namespace'=>'Backend'], function(){
+Route::group(['prefix'=>'backend', 'namespace'=>'Backend', 'middleware'=>'admin.auth'], function(){
     // 首页
     Route::get('home', 'HomeController@index')->name('back.home');
 
