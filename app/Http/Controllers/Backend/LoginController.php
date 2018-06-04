@@ -36,6 +36,9 @@ class LoginController extends Controller
         $data['is_admin'] = 1;
 
         if(Auth::attempt($data)){
+            $user = Auth::user();
+            $storeData['backend'] = ['email'=>$user->email, 'name'=>$user->name, 'is_admin'=>$user->is_admin];
+            session($storeData);
             session()->flash('success', '欢迎回来！');
             return redirect()->route('back.home');
         }else{
@@ -50,6 +53,7 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
+        session()->forget('backend');
         session()->flash('success', '您已成功退出！');
         return redirect()->route('back.login');
     }
