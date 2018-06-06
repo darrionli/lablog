@@ -29,9 +29,9 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-    <div class="login-logo">
-        欢迎回来！
-    </div>
+    {{--<div class="login-logo">--}}
+        {{--欢迎回来！--}}
+    {{--</div>--}}
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">登录</p>
@@ -39,18 +39,28 @@
         <form action="{{route('back.login')}}" method="post">
             {{csrf_field()}}
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="邮箱" name="email">
+                <input type="email" class="form-control" placeholder="邮箱" name="email" value="{{ old('email') }}">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="密码" name="password">
+                <input type="password" class="form-control" placeholder="密码" name="password" {{ old('password') }}>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="验证码" name="captcha">
+            </div>
+            <div class="form-group">
+                <span>{!! captcha_img() !!}</span>
+                <span><a href="javascript:void(0);" onclick="flushCapt(this)">看不清？点击更换</a></span>
+            </div>
+
+
+
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox"> Remember Me
+                            <input type="checkbox"> 记住我
                         </label>
                     </div>
                 </div>
@@ -82,6 +92,11 @@
             increaseArea: '20%' /* optional */
         });
     });
+
+    // 刷新验证码
+    function flushCapt(obj) {
+        $(obj).parent().prev().children().attr('src', '/captcha/default?' + Math.random());
+    }
 </script>
 </body>
 </html>

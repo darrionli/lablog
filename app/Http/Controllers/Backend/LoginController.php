@@ -31,10 +31,11 @@ class LoginController extends Controller
     {
         $data = $this->validate($request, [
             'email' => 'required|email|max:255',
-            'password' => 'required'
+            'password' => 'required',
+            'captcha' => 'required|captcha'
         ]);
         $data['is_admin'] = 1;
-
+        unset($data['captcha']);
         if(Auth::attempt($data)){
             $user = Auth::user();
             $storeData['backend'] = ['email'=>$user->email, 'name'=>$user->name, 'is_admin'=>$user->is_admin];
