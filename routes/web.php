@@ -12,6 +12,14 @@
 */
 
 /**
+ * 前台相关
+ */
+Route::group(['namespace'=>'Home'], function(){
+    Route::get('/', 'IndexController@index')->name('home.index');
+    Route::get('article/{id}', 'IndexController@article');
+});
+
+/**
  * 后台登录模块
  */
 Route::group(['prefix'=>'backend', 'namespace'=>'Backend'], function(){
@@ -24,7 +32,6 @@ Route::group(['prefix'=>'backend', 'namespace'=>'Backend'], function(){
  * 后台其他功能
  */
 Route::group(['prefix'=>'backend', 'namespace'=>'Backend', 'middleware'=>'admin.auth'], function(){
-    // 首页
     Route::get('home', 'HomeController@index')->name('back.home');
 
     // 文章管理
