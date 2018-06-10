@@ -82,6 +82,23 @@ Route::group(['prefix'=>'backend', 'namespace'=>'Backend', 'middleware'=>'admin.
         Route::get('restore/{id}', 'LabelController@restore')->name('back.label.restore');
     });
 
+    // 友情链接管理
+    Route::group(['prefix'=>'friendship'], function(){
+        // 列表
+        Route::get('index', 'FriendshipController@index')->name('back.friend.index');
+        // 添加
+        Route::get('create', 'FriendshipController@create')->name('back.friend.create');
+        Route::post('store', 'FriendshipController@store')->name('back.friend.store');
+        // 更新
+        Route::get('edit/{id}', 'FriendshipController@edit')->name('back.friend.edit');
+        Route::post('update/{id}', 'FriendshipController@update')->name('back.friend.update');
+        // 删除
+        Route::get('destroy/{id}', 'FriendshipController@destroy')->name('back.friend.destroy');
+        // 恢复
+        Route::get('restore/{id}', 'FriendshipController@restore')->name('back.friend.restore');
+    });
+
+
     // 网站管理
     Route::group(['prefix'=>'config'], function(){
         Route::get('index', 'ConfigController@index')->name('back.config.index');
