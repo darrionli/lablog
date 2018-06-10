@@ -55,6 +55,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="{{ route('back.config.index') }}"><i class="fa fa-circle-o"></i> 配置项</a></li>
+            <li><a href="{{ route('back.config.clear') }}"><i class="fa fa-circle-o"></i> 更新缓存</a></li>
         </ul>
     </li>
 </ul>

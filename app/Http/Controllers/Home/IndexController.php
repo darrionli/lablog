@@ -16,10 +16,14 @@ class IndexController extends Controller
         $article = Article::select('id', 'category_id', 'author', 'title', 'content', 'describe','created_at')
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
-        $config = Config::pluck('val', 'name');
+        $config = cache('common:config');
+        $tdk = [
+            'title'=>$config->get('WEB_TITLE'),
+            'desc'=>$config->get('WEB_DESCRIPTION'),
+            'keyword'=>$config->get('WEB_KEYWORDS'),
+        ];
 
-        $assign = ['config'=>$config, 'article'=>$article, 'tagName'=>''];
-        dd($assign);
+        $assign = ['tdk'=>$tdk, 'article'=>$article, 'tagName'=>'','category_id' => 'index'];
         return view('home/index/index', $assign);
     }
 

@@ -52,11 +52,6 @@
                 <li class="b-nav-cname @if($category_id == 'chat') b-nav-active @endif">
                 <a href="{{ url('chat') }}">随言碎语</a>
                 </li>
-                @if(!$gitProject->isEmpty())
-                    <li class="b-nav-cname hidden-sm  @if($category_id == 'git') b-nav-active @endif">
-                    <a href="{{ url('git') }}">开源项目</a>
-                    </li>
-                @endif
             </ul>
             <ul id="b-login-word" class="nav navbar-nav navbar-right">
                 @if(empty(session('user.name')))
@@ -90,45 +85,6 @@
                     <input class="b-search-submit" type="submit" value="全站搜索">
                 </form>
             </div>
-            @if(!empty($config['QQ_QUN_NUMBER']))
-                <div class="b-tags">
-                <h4 class="b-title">加入组织</h4>
-                <ul class="b-all-tname">
-                    <li class="b-qun-or-code">
-                        <img src="{{ asset($config['QQ_QUN_OR_CODE']) }}" alt="QQ">
-                    </li>
-                    <li class="b-qun-word">
-                        <p class="b-qun-nuber">
-                            1. 手Q扫左侧二维码
-                        </p>
-                        <p class="b-qun-nuber">
-                            2. 搜Q群：{{ $config['QQ_QUN_NUMBER'] }}
-                        </p>
-                        <p class="b-qun-code">
-                            3. 点击{!! $config['QQ_QUN_CODE'] !!}
-                        </p>
-                        <p class="b-qun-article">
-                            @if(!empty($qqQunArticle['id']))
-                                <a href="{{ url('article', [$qqQunArticle['id']]) }}" target="_blank">{{ $qqQunArticle['title'] }}</a>
-                            @endif
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            @endif
-            <div class="b-tags">
-                <h4 class="b-title">热门标签</h4>
-                <ul class="b-all-tname">
-                    <?php $tag_i = 0; ?>
-                    @foreach($tag as $v)
-                        <?php $tag_i++; ?>
-                        <?php $tag_i=$tag_i==5?1:$tag_i; ?>
-                        <li class="b-tname">
-                            <a class="tstyle-{{ $tag_i }}" href="{{ url('tag', [$v->id]) }}" onclick="return recordId('tid','{{ $v->id }}')">{{ $v->name }} ({{ $v->articles_count }})</a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
             <div class="b-recommend">
                 <h4 class="b-title">置顶推荐</h4>
                 <p class="b-recommend-p">
@@ -137,25 +93,39 @@
                     @endforeach
                 </p>
             </div>
-            <div class="b-link">
-                <h4 class="b-title">最新评论</h4>
-                <div>
-                    @foreach($newComment as $v)
-                        <ul class="b-new-comment @if($loop->first) b-new-commit-first @endif">
-                            <img class="b-head-img js-head-img" src="{{ asset('uploads/avatar/default.jpg') }}" _src="{{ asset($v->avatar) }}" alt="{{ $v->name }}">
-                            <li class="b-nickname">
-                                {{ $v->name }}<span>{{ word_time($v->created_at) }}</span>
-                            </li>
-                            <li class="b-nc-article">
-                                在<a href="{{ url('article', [$v->article_id]) }}" target="_blank">{{ $v->title }}</a>中评论
-                            </li>
-                            <li class="b-content">
-                                {!! $v->content !!}
-                            </li>
-                        </ul>
+            <div class="b-tags">
+                <h4 class="b-title">热门标签</h4>
+                <ul class="b-all-tname">
+                    <?php $tag_i = 0; ?>
+                    @foreach($labels as $v)
+                        <?php $tag_i++; ?>
+                        <?php $tag_i=$tag_i==5?1:$tag_i; ?>
+                        <li class="b-tname">
+                            <a class="tstyle-{{ $tag_i }}" href="{{ url('tag', [$v->id]) }}" onclick="return recordId('tid','{{ $v->id }}')">{{ $v->name }} ({{ $v->articles_count }})</a>
+                        </li>
                     @endforeach
-                </div>
+                </ul>
             </div>
+
+            {{--<div class="b-link">--}}
+                {{--<h4 class="b-title">最新评论</h4>--}}
+                {{--<div>--}}
+                    {{--@foreach($newComment as $v)--}}
+                        {{--<ul class="b-new-comment @if($loop->first) b-new-commit-first @endif">--}}
+                            {{--<img class="b-head-img js-head-img" src="{{ asset('uploads/avatar/default.jpg') }}" _src="{{ asset($v->avatar) }}" alt="{{ $v->name }}">--}}
+                            {{--<li class="b-nickname">--}}
+                                {{--{{ $v->name }}<span>{{ word_time($v->created_at) }}</span>--}}
+                            {{--</li>--}}
+                            {{--<li class="b-nc-article">--}}
+                                {{--在<a href="{{ url('article', [$v->article_id]) }}" target="_blank">{{ $v->title }}</a>中评论--}}
+                            {{--</li>--}}
+                            {{--<li class="b-content">--}}
+                                {{--{!! $v->content !!}--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                    {{--@endforeach--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <eq name="show_link" value="1">
                 <div class="b-link">
                     <h4 class="b-title">友情链接</h4>

@@ -1,10 +1,10 @@
 @extends('layouts.home.home')
 
-@section('title', $head['title'])
+@section('title', $tdk['title'])
 
-@section('keywords', $head['keywords'])
+@section('keywords', $tdk['keyword'])
 
-@section('description', $head['description'])
+@section('description', $tdk['desc'])
 
 @section('content')
     <!-- 左侧列表开始 -->
@@ -41,9 +41,9 @@
                             <i class="fa fa-list-alt"></i> <a href="{{ url('category', [$v->category->id]) }}" target="_blank">{{ $v->category->name }}</a>
                         </li>
                         <li class="col-xs-7 col-md-5 col-lg-4 "><i class="fa fa-tags"></i>
-                            @foreach($v->tags as $n)
-                                <a class="b-tag-name" href="{{ url('tag', [$n->id]) }}" target="_blank">{{ $n->name }}</a>
-                            @endforeach
+                            {{--@foreach($v->tags as $n)--}}
+                                {{--<a class="b-tag-name" href="{{ url('tag', [$n->id]) }}" target="_blank">{{ $n->name }}</a>--}}
+                            {{--@endforeach--}}
                         </li>
                     </ul>
                 </div>
@@ -64,7 +64,7 @@
 
                         <!-- 文章描述开始 -->
                         <div class="col-xs-12 col-sm-6  col-md-6 col-lg-8 b-des-read">
-                            {{ $v->description }}
+                            {{ $v->describe }}
                         </div>
                         <!-- 文章描述结束 -->
                     </div>
@@ -77,7 +77,7 @@
         <!-- 列表分页开始 -->
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-12 b-page text-center">
-                {{ $article->appends(['wd' => request()->input('wd')])->links('vendor.pagination.bjypage') }}
+                {{ $article->links() }}
             </div>
         </div>
         <!-- 列表分页结束 -->

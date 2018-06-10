@@ -86,5 +86,6 @@ Route::group(['prefix'=>'backend', 'namespace'=>'Backend', 'middleware'=>'admin.
     Route::group(['prefix'=>'config'], function(){
         Route::get('index', 'ConfigController@index')->name('back.config.index');
         Route::post('store', 'ConfigController@store')->name('back.config.store');
+        Route::get('clear', 'ConfigController@clear')->name('back.config.clear');
     });
 });

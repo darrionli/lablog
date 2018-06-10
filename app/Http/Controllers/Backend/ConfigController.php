@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Models\Config;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Artisan;
+use Cache;
 
 class ConfigController extends Controller
 {
@@ -32,5 +34,16 @@ class ConfigController extends Controller
             session()->flash('danger', '更新失败');
         }
         return redirect()->route('back.config.index');
+    }
+
+    /**
+     * 清理网站缓存
+     */
+    public function clear()
+    {
+//        Artisan::call('cache:clear');
+        Cache::flush();
+        session()->flash('success', '更新成功');
+        return redirect()->back();
     }
 }
