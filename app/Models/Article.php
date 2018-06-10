@@ -16,6 +16,16 @@ class Article extends Base
     }
 
     /**
+     * 关联标签表
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function labels()
+    {
+        return $this->belongsToMany(Label::class, 'article_labels');
+    }
+
+    /**
      *  添加文章
      */
     public function saveArticle($data)

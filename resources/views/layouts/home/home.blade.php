@@ -144,12 +144,15 @@
         <footer id="b-foot" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <ul>
                 <li class="text-center">
-                    本博客使用免费开源的 <a rel="nofollow" href="https://github.com/baijunyao/laravel-bjyblog" target="_blank">laravel-bjyblog</a> {{ config('bjyblog.version') }} 搭建 © 2014-2018 {{ parse_url(config('app.url'))['host'] }} 版权所有 @if(!empty($config['WEB_ICP_NUMBER'])) ICP证：{{ $config['WEB_ICP_NUMBER'] }} @endif
+                     © 2018 {{ parse_url(config('app.url'))['host'] }} 版权所有 @if(!empty($config['WEB_ICP_NUMBER'])) {{ $config['WEB_ICP_NUMBER'] }} @endif
                 </li>
                 <li class="text-center">
                     @if(!empty($config['ADMIN_EMAIL']))
                         联系邮箱：{!! $config['ADMIN_EMAIL'] !!}
                     @endif
+                    <!-- cnzz统计开始 -->
+                    {!! htmlspecialchars_decode($config['WEB_STATISTICS']) !!}
+                    <!-- cnzz统计结束 -->
                 </li>
             </ul>
             <div class="b-h-20"></div>
@@ -219,10 +222,6 @@
     })();
 </script>
 <!-- 百度页面自动提交结束 -->
-
-<!-- 百度统计开始 -->
-{!! htmlspecialchars_decode($config['WEB_STATISTICS']) !!}
-<!-- 百度统计结束 -->
 @yield('js')
 </body>
 </html>

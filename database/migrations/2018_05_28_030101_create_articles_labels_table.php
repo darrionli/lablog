@@ -15,7 +15,7 @@ class CreateArticlesLabelsTable extends Migration
     {
         Schema::create('article_labels', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->default(0)->comment('文章ID');
+            $table->integer('article_id')->default(0)->comment('文章ID');
             $table->integer('label_id')->default(0)->comment('标签ID');
             $table->timestamps();
             $table->softDeletes();

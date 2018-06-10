@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.home.home')
 
 @section('title', $data->title)
 
@@ -26,14 +26,14 @@
                     <li class="col-xs-7 col-md-3 col-lg-3"><i class="fa fa-calendar"></i> {{ $data->created_at }}</li>
                     <li class="col-xs-5 col-md-2 col-lg-2"><i class="fa fa-list-alt"></i> <a href="{{ url('category', [$data->category->id]) }}">{{ $data->category->name }}</a>
                     <li class="col-xs-7 col-md-5 col-lg-4 "><i class="fa fa-tags"></i>
-                        @foreach($data->tags as $v)
+                        @foreach($data->labels as $v)
                             <a class="b-tag-name" href="{{ url('tag', [$v->id]) }}">{{ $v->name }}</a>
                         @endforeach
                     </li>
                 </ul>
             </div>
             <div class="col-xs-12 col-md-12 col-lg-12 b-content-word">
-                <div class="js-content">{!! $data->html !!}</div>
+                <div class="js-content">{!! $data->content !!}</div>
                 <eq name="article['current']['is_original']" value="1">
                     <p class="b-h-20"></p>
                     <p class="b-copyright">

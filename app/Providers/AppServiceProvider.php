@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Config;
+use App\Models\Friendship_link;
 use App\Models\Label;
 use Illuminate\Support\ServiceProvider;
 use Cache;
@@ -38,7 +39,8 @@ class AppServiceProvider extends ServiceProvider
 
             // 标签
             $labels = Cache::remember('common:label', self::CACHE_TIME, function(){
-                return Label::select('id', 'name')->get();
+//                return Label::select('id', 'name')->get();
+                return Label::has('articles')->withCount('articles')->get();
             });
 
             // 置顶文章
@@ -50,7 +52,10 @@ class AppServiceProvider extends ServiceProvider
             });
 
             // 友情链接
-            $friendshipLink = [];
+            $friendshipLink = Cache::remember('common:friendship', self::CACHE_TIME, function(){
+               return  Friendship_link::select('id','name','url')->get();
+            });
+
 
             $assign = compact('category', 'labels', 'topArticle', 'config', 'friendshipLink');
             $view->with($assign);
