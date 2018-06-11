@@ -36,9 +36,32 @@ class ArticleController extends Controller
     public function store(Store $request, Article $article)
     {
         $data = $request->except('_token');
-        $result = $article->saveArticle($data);
+        $data['content'] = $data['content-html-code'];
+        $data['markdown'] = $data['content-markdown-doc'];
+        unset($data['content-html-code'], $data['content-markdown-doc']);
+
+        // 如果文章描述未填写，则提取正文内容
+        if(empty($data['describe'])){
+            $description = preg_replace(array('/[~*>#-]*/', '/!?\[.*\]\(.*\)/', '/\[.*\]/'), '', $data['markdown']);
+            $data['describe'] = mb_substr($description, 0, 200);
+        }
+
+        $result = $article::create($data);
+        if($result){
+            session()->flash('success', '添加成功');
+        }else{
+            session()->flash('danger', '添加失败');
+        }
         return redirect()->route('back.art.index');
     }
+
+    // 获取content
+    public function markdown($id)
+    {
+        $article = Article::select('markdown')->find($id);
+        return $article->markdown;
+    }
+
 
     // 编辑文章
     public function edit(Request $request, $id)
@@ -53,13 +76,14 @@ class ArticleController extends Controller
     public function update(Store $request, Article $article, Article_label $article_label, $id)
     {
         $data = $request->except('_token');
-        if(empty($data['describe'])){
+        $data['content'] = $data['content-html-code'];
+        $data['markdown'] = $data['content-markdown-doc'];
+        unset($data['content-html-code'], $data['content-markdown-doc']);
+        // 如果文章描述未填写，则提取正文内容
+        if($data['markdown']){
             $description = preg_replace(array('/[~*>#-]*/', '/!?\[.*\]\(.*\)/', '/\[.*\]/'), '', $data['markdown']);
             $data['describe'] = mb_substr($description, 0, 200);
         }
-        // 将markdown转换成html
-        $data['content'] = markdownToHtml($data['markdown']);
-
         $result = $article->where('id', $id)->update($data);
         if ($result) {
             session()->flash('success', '修改成功');

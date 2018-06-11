@@ -43,6 +43,7 @@ Route::group(['prefix'=>'backend', 'namespace'=>'Backend', 'middleware'=>'admin.
         Route::post('store', 'ArticleController@store')->name('back.art.store');
         // 文章编辑
         Route::get('edit/{id}', 'ArticleController@edit')->name('back.art.edit');
+        Route::get('markdown/{id}', 'ArticleController@markdown');
         Route::post('update/{id}', 'ArticleController@update')->name('back.art.update');
         // 文章删除
         Route::get('destroy/{id}', 'ArticleController@destroy')->name('back.art.destroy');

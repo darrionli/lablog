@@ -7,11 +7,11 @@
 @section('description', $data->description)
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('statics/prism/prism.min.css') }}" />
+    <link rel="stylesheet" href="/editor/css/editormd.css">
+    <link rel="stylesheet" href="/editor/css/editormd.preview.min.css">
     <style>
-        .js-content p{
-            margin-bottom: 20px;;
-        }
+        #markcontent ul li {list-style: disc;}
+        #markcontent ol li {list-style: decimal;}
     </style>
 @endsection
 
@@ -33,7 +33,9 @@
                 </ul>
             </div>
             <div class="col-xs-12 col-md-12 col-lg-12 b-content-word">
-                <div class="js-content">{!! $data->content !!}</div>
+                <div class="content editormd-preview-theme-dark" id="markcontent">
+                    {!! $data->content !!}
+                </div>
                 <eq name="article['current']['is_original']" value="1">
                     <p class="b-h-20"></p>
                     <p class="b-copyright">
@@ -142,18 +144,29 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('statics/prism/prism.min.js') }}"></script>
-    <script>
-        // 添加行数
-        $('pre').addClass('line-numbers');
-        // 新页面跳转
-        $('.js-content a').attr('target', '_blank')
+    {{--<script src="{{ asset('statics/prism/prism.min.js') }}"></script>--}}
+    {{--<script>--}}
+        {{--// 添加行数--}}
+        {{--$('pre').addClass('line-numbers');--}}
+        {{--// 新页面跳转--}}
+        {{--$('.js-content a').attr('target', '_blank')--}}
 
-        // 定义评论url
-        ajaxCommentUrl = "{{ url('comment') }}";
-        checkLogin = "{{ url('checkLogin') }}";
-        titleName = '{{ $config['WEB_NAME'] }}';
+        {{--// 定义评论url--}}
+        {{--ajaxCommentUrl = "{{ url('comment') }}";--}}
+        {{--checkLogin = "{{ url('checkLogin') }}";--}}
+        {{--titleName = '{{ $config['WEB_NAME'] }}';--}}
+    {{--</script>--}}
+    {{--<script src="{{ asset('statics/layer-2.4/layer.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/home/comment.js') }}"></script>--}}
+
+    <script src="/editor/js/jquery.min.js"></script>
+    <script src="/editor/lib/marked.min.js"></script>
+    <script src="/editor/lib/prettify.min.js"></script>
+    <script src="/editor/js/editormd.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            editormd.markdownToHTML("markcontent");
+        })
+
     </script>
-    <script src="{{ asset('statics/layer-2.4/layer.js') }}"></script>
-    <script src="{{ asset('js/home/comment.js') }}"></script>
 @endsection

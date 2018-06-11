@@ -7,16 +7,24 @@
 @section('two-level', '添加文章')
 
 @section('load_css')
-    <link rel="stylesheet" href="/markdown/simplemde.min.css">
+    <link rel="stylesheet" href="/editor/css/editormd.min.css">
 @stop
 
 @section('load_js')
-    <script src="/markdown/simplemde.min.js"></script>
+    <script src="/editor/js/editormd.js"></script>
     <script>
-        var simplemde = new SimpleMDE();
-        simplemde.codemirror.on("change", function(){
-            $("#markdown").text(simplemde.value());
-        });
+        $(function() {
+            var editor = editormd("content", {
+                width   : "100%",
+                height  : 500,
+                syncScrolling : "single",
+                path    : "/editor/lib/",
+                saveHTMLToTextarea : true,
+                imageUpload : true,
+                imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL : "./php/upload.php",
+            });
+        })
     </script>
 @stop
 
@@ -45,7 +53,8 @@
                 </div>
                 <div class="form-group">
                     <label>内容</label>
-                    <textarea name="markdown" id="markdown" cols="20" rows="10" class="form-control"></textarea>
+                    {{--<textarea name="markdown" id="markdown" cols="20" rows="10" class="form-control"></textarea>--}}
+                    <div id="content" style="z-index:9999;"></div>
                 </div>
                 <div class="form-group">
                     <label>描述</label>

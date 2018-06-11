@@ -26,8 +26,8 @@ class Store extends FormRequest
         return [
             'category_id'=>'required',
             'title'=>'required',
-            'author'=>'required',
-            'markdown'=>'required'
+            'author'=>'required'
+//            'markdown'=>'required'
         ];
     }
 
