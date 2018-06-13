@@ -8,10 +8,12 @@
 
 @section('load_css')
     <link rel="stylesheet" href="/editor/css/editormd.min.css">
+    <link rel="stylesheet" href="/bootcss/plugins/iCheck/all.css">
 @stop
 
 @section('load_js')
     <script src="/editor/js/editormd.js"></script>
+    <script src="/bootcss/plugins/iCheck/icheck.min.js"></script>
     <script>
         $(function() {
             var editor = editormd("content", {
@@ -25,6 +27,13 @@
                 imageUploadURL : "./php/upload.php",
             });
         })
+
+
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"], input[type="radio"]').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass   : 'iradio_minimal-blue'
+        })
     </script>
 @stop
 
@@ -36,6 +45,17 @@
                 <div class="form-group">
                     <label>标题</label>
                     <input type="text" class="form-control" name="title" value="">
+                </div>
+                <div class="form-group">
+                    <label>标签</label>
+                    <div>
+                        @if($label)
+                            @foreach($label as $value)
+                                <input type="checkbox" name="label[]" value="{{ $value->id }}"> {{ $value->name }}&nbsp;&nbsp;
+                            @endforeach
+                        @endif
+                    </div>
+
                 </div>
                 <div class="form-group">
                     <label>分类</label>
@@ -53,7 +73,6 @@
                 </div>
                 <div class="form-group">
                     <label>内容</label>
-                    {{--<textarea name="markdown" id="markdown" cols="20" rows="10" class="form-control"></textarea>--}}
                     <div id="content" style="z-index:9999;"></div>
                 </div>
                 <div class="form-group">

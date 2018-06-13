@@ -36,6 +36,7 @@ class ArticleController extends Controller
     public function store(Store $request, Article $article)
     {
         $data = $request->except('_token');
+        var_dump($data);exit;
         $data['content'] = $data['content-html-code'];
         $data['markdown'] = $data['content-markdown-doc'];
         unset($data['content-html-code'], $data['content-markdown-doc']);
