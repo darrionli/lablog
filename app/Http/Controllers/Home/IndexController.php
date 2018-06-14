@@ -25,7 +25,7 @@ class IndexController extends Controller
         ];
 
         $assign = ['tdk'=>$tdk, 'article'=>$article, 'tagName'=>'','category_id' => 'index'];
-        return view('home/index/index', $assign);
+        return view('home/bs/index', $assign);
     }
 
     // 文章详情页
@@ -65,6 +65,6 @@ class IndexController extends Controller
         $comment = [];
         $category_id = $data->category->id;
         $assign = compact('category_id', 'data', 'prev', 'next', 'comment');
-        return view('home.index.article', $assign);
+        return view('home.bs.article', $assign);
     }
 }
