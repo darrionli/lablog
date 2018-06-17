@@ -17,6 +17,8 @@
 Route::group(['namespace'=>'Home'], function(){
     Route::get('/', 'IndexController@index')->name('home.index');
     Route::get('article/{id}', 'IndexController@article');
+    Route::get('category/{id}', 'IndexController@category');
+    Route::get('tag/{id}', 'IndexController@tag');
 });
 
 /**

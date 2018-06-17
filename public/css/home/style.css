@@ -8,7 +8,7 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
+    /*margin-bottom: 60px;*/
     height: 100%;
     font-size: 14px;
     color: #525252;
@@ -397,7 +397,7 @@ li.active a {
 /* PC X-iPad Pro*/
 @media (min-width: 1200px) {
 .container {
-    max-width: 1140px;
+    max-width: 1200px;
 }
 .f-17 {
     font-size:17px;

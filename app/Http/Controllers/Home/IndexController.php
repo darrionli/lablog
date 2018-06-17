@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Config;
+use App\Models\Label;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cache;
@@ -66,5 +68,54 @@ class IndexController extends Controller
         $category_id = $data->category->id;
         $assign = compact('category_id', 'data', 'prev', 'next', 'comment');
         return view('home.bs.article', $assign);
+    }
+
+    // 分类
+    public function category($id)
+    {
+        $category = Category::select('id', 'name', 'describe')
+            ->where('id', $id)
+            ->first();
+        if(is_null($category)){
+            return abort(404);
+        }
+        // 获取分类下的文章
+        $article = $category->articles()
+            ->orderBy('created_at', 'desc')
+            ->with('labels')
+            ->paginate(10);
+        $config = cache('common:config');
+        $tdk = [
+            'title'=>$config->get('WEB_TITLE'),
+            'desc'=>$config->get('WEB_DESCRIPTION'),
+            'keyword'=>$config->get('WEB_KEYWORDS'),
+        ];
+
+        $assign = ['tdk'=>$tdk, 'article'=>$article, 'tagName'=>'','category_id' => $id];
+        return view('home.bs.index', $assign);
+    }
+
+    // 标签
+    public function tag($id)
+    {
+          $label = Label::select('id', 'name')
+            ->where('id', $id)
+            ->first();
+          if(is_null($label)){
+              return abort(404);
+          }
+          $article = $label->articles()
+              ->orderBy('created_at', 'desc')
+              ->with(['category', 'labels'])
+              ->paginate(10);
+          $config = cache('common:config');
+          $tdk = [
+                'title'=>$config->get('WEB_TITLE'),
+                'desc'=>$config->get('WEB_DESCRIPTION'),
+                'keyword'=>$config->get('WEB_KEYWORDS'),
+          ];
+
+        $assign = ['tdk'=>$tdk, 'article'=>$article, 'tagName'=>$label->name,'category_id' => 'index'];
+        return view('home.bs.index', $assign);
     }
 }

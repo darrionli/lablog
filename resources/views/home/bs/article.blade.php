@@ -29,9 +29,17 @@ $(function(){
         <h1 class="card-title text-center font-weight-bold text-info">{{ $data->title }}</h1>
         <hr>
         <div class="text-center f-13">
-            <span class="mx-2" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="最后编辑于2018年04月26日">2018年4月15日 21:19</span>
-            <span class="mx-2">阅读 2050</span>
-            <a class="mx-2 to-com" href="#comment-block">评论 17</a>
+
+            <span class="mx-2" data-toggle="tooltip" data-placement="bottom">
+                <i class="fa fa-calendar-times-o ml-2 mr-1"></i>
+                {{ $data->created_at }}
+            </span>
+
+            <span class="mx-2">
+                <i class="fa fa-eye ml-2 mr-1"></i>
+                阅读 {{ $data->readed }}
+            </span>
+            {{--<a class="mx-2 to-com" href="#comment-block">评论 17</a>--}}
         </div>
         <div id="editormd-view" class="article-body mt-4 f-17" style="line-height:1.8">
             {!! $data->content !!}
@@ -83,26 +91,26 @@ $(function(){
 </div>
 
 <!-- 相关评论 -->
-<div class="card mt-2 rounded-0 border-0" id="comment-block">
-    <div class="card border-0 rounded-0 f-16" id="editor-block">            
-        <div class="card-body text-center m-2 m-md-3 f-16" id="no-editor">
-            <div>您尚未登录，请
-                <a class="text-danger" href="/accounts/login/?next=/article/django-mysql/">登录</a> 或
-                <a class="text-danger" href="/accounts/signup/?next=/article/django-mysql/">注册</a> 后评论
-            </div>
-            <div class="login-link mt-2">
-                <a class="mx-3" href="/accounts/weibo/login/?next=/article/django-mysql/" title="社交账号登录有点慢，请耐心等候！"><i class="fa fa-weibo fa-2x"></i></a>
-                <a class="mx-3" href="/accounts/github/login/?next=/article/django-mysql/" title="社交账号登录有点慢，请耐心等候！"><i class="fa fa-github fa-2x"></i></a>
-            </div>
-        </div>            
-    </div>
-    <div class="card-body p-2 p-md-3 f-17" id="comment-list">
-        <ul class="list-unstyled">
-            <div class="mb-3">
-                <strong>0&nbsp;人参与&nbsp;|&nbsp;0&nbsp;条评论</strong>
-            </div>                
-            暂时没有评论，欢迎来尬聊！               
-        </ul>
-    </div>
-</div>
+{{--<div class="card mt-2 rounded-0 border-0" id="comment-block">--}}
+    {{--<div class="card border-0 rounded-0 f-16" id="editor-block">            --}}
+        {{--<div class="card-body text-center m-2 m-md-3 f-16" id="no-editor">--}}
+            {{--<div>您尚未登录，请--}}
+                {{--<a class="text-danger" href="/accounts/login/?next=/article/django-mysql/">登录</a> 或--}}
+                {{--<a class="text-danger" href="/accounts/signup/?next=/article/django-mysql/">注册</a> 后评论--}}
+            {{--</div>--}}
+            {{--<div class="login-link mt-2">--}}
+                {{--<a class="mx-3" href="/accounts/weibo/login/?next=/article/django-mysql/" title="社交账号登录有点慢，请耐心等候！"><i class="fa fa-weibo fa-2x"></i></a>--}}
+                {{--<a class="mx-3" href="/accounts/github/login/?next=/article/django-mysql/" title="社交账号登录有点慢，请耐心等候！"><i class="fa fa-github fa-2x"></i></a>--}}
+            {{--</div>--}}
+        {{--</div>            --}}
+    {{--</div>--}}
+    {{--<div class="card-body p-2 p-md-3 f-17" id="comment-list">--}}
+        {{--<ul class="list-unstyled">--}}
+            {{--<div class="mb-3">--}}
+                {{--<strong>0&nbsp;人参与&nbsp;|&nbsp;0&nbsp;条评论</strong>--}}
+            {{--</div>                --}}
+            {{--暂时没有评论，欢迎来尬聊！               --}}
+        {{--</ul>--}}
+    {{--</div>--}}
+{{--</div>--}}
 @stop

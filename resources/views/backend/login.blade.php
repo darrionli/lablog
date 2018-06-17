@@ -47,7 +47,7 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="验证码" name="captcha">
+                <input type="text" class="form-control" placeholder="验证码" name="captcha">
             </div>
             <div class="form-group">
                 <span>{!! captcha_img() !!}</span>

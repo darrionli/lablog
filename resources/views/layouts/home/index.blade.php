@@ -23,7 +23,7 @@
                 <div class="container">
                     <div class="navbar-header">
                         <a href="/" class="navbar-brand">
-                            Blog
+                            LidiCode
                         </a>
                     </div>
 
@@ -33,7 +33,7 @@
 
                     <div class="collapse navbar-collapse" id="navbarsList">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
+                            <li class="nav-item @if($category_id == 'index') active @endif">
                                 <a class="nav-link" href="/">首页</a>
                             </li>
                             @foreach($category as $v)
