@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('category_id')->default(0)->comment('所属分类ID');
             $table->string('author', 50)->default('')->comment('作者');
             $table->string('title')->default('')->comment('标题');
+            $table->string('cover')->default('')->comment('封面图');
             $table->mediumText('content')->comment('转成html');
             $table->mediumText('markdown')->comment('markdown原始内容');
             $table->text('describe')->comment('描述');

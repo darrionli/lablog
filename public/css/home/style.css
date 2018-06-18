@@ -452,3 +452,21 @@ li.active a {
     padding-top: 28px;
     padding-bottom: 28px;
 }
+
+#page{
+    float: right;
+}
+#page .page-item.active .page-link{
+    background-color: #17a2b8!important;
+    border-color: #17a2b8!important;
+}
+#page .page-item .page-link{
+    color:#525252;
+}
+#page .page-item.active .page-link{
+    color:#fff;
+}
+#page .page-item a:hover {
+    text-decoration: none;
+    color: #ea6f5a;
+}

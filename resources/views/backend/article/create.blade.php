@@ -40,7 +40,7 @@
 @section('content')
     <div class="box-body">
         <div class="col-md-8 col-md-offset-2">
-            <form action="{{ route('back.art.store') }}" method="post">
+            <form action="{{ route('back.art.store') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label>标题</label>
@@ -78,6 +78,10 @@
                 <div class="form-group">
                     <label>描述</label>
                     <textarea name="describe" id="describe" cols="30" rows="10" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>封面图</label>
+                    <input type="file" name="avatar">
                 </div>
                 <div class="form-group">
                     <label>是否置顶</label>

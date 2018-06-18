@@ -28,15 +28,15 @@
 <!-- 文章列表 -->
 <div class="art-list">
 	@foreach($article as $k => $v)
-    <div class="media mb-1 mb-sm-2 p-2 p-lg-3">
+    <div class="media mb-1 mb-sm-3 p-2 p-lg-3">
         <div class="align-self-center mr-2 mr-lg-3 w-25 modal-open">
-            <a href="{{ url('article', [$v->id]) }}	" target="_blank">
-                <img class="w-100 article-img" src="http://pic.tendcode.com/article/180526/SSH.png" alt="{{ $v->title }}">
+            <a href="{{ url('article', [$v->id]) }}" target="_blank">
+                <img class="w-100 article-img" src="{{ $v->cover }}" alt="{{ $v->title }}">
             </a>
         </div>
         <div class="media-body">
             <div class="text-muted mb-2 f-12">
-                <img class="avatar" src="https://lccdn.phphub.org/uploads/avatars/25328_1526479710.jpg?imageView2/1/w/100/h/100" alt="{{ $v->author }}">
+                <img class="avatar" src="/images/home/avatar.jpg" alt="{{ $v->author }}">
                 <span>{{ $v->author }}</span>
                 <span><i class="fa fa-calendar-times-o ml-2 mr-1"></i>{{ $v->created_at }}</span>
             </div>
@@ -49,13 +49,17 @@
                 <a class="cate mr-2" href="{{ url('category', [$v->category->id]) }}" title="查看当前分类下更多文章">
                     <i class="fa fa-book mr-1"></i>{{ $v->category->name }}
                 </a>
-                <span class="mr-2"><i class="fa fa-eye ml-2 mr-1"></i>307</span>
-                <a href="/article/python-ssh/#comment-block" target="_blank" title="查看文章评论">
-                    <i class="fa fa-comments ml-2 mr-1"></i>6
-                </a>
+                <span class="mr-2"><i class="fa fa-eye ml-2 mr-1"></i>{{ $v->readed }}</span>
+                {{--<a href="/article/python-ssh/#comment-block" target="_blank" title="查看文章评论">--}}
+                    {{--<i class="fa fa-comments ml-2 mr-1"></i>6--}}
+                {{--</a>--}}
             </div>
         </div>
     </div>
     @endforeach
 </div>
+<div id="page">
+    {{ $article->links() }}
+</div>
+
 @stop

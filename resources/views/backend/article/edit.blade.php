@@ -8,10 +8,12 @@
 
 @section('load_css')
     <link rel="stylesheet" href="/editor/css/editormd.min.css">
+    <link rel="stylesheet" href="/bootcss/plugins/iCheck/all.css">
 @stop
 
 @section('load_js')
     <script src="/editor/js/editormd.js"></script>
+    <script src="/bootcss/plugins/iCheck/icheck.min.js"></script>
     <script>
         $(function() {
             $.get('/backend/article/markdown/{{ $article->id }}',function(md){
@@ -28,17 +30,34 @@
                 });
             })
         })
+
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"], input[type="radio"]').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass   : 'iradio_minimal-blue'
+        })
     </script>
 @stop
 
 @section('content')
     <div class="box-body">
         <div class="col-md-8 col-md-offset-2">
-            <form action="{{ route('back.art.update', [$article->id]) }}" method="post">
+            <form action="{{ route('back.art.update', [$article->id]) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label>标题</label>
                     <input type="text" class="form-control" name="title" value="{{ $article->title }}">
+                </div>
+                <div class="form-group">
+                    <label>标签</label>
+                    <div>
+                        @if($label)
+                            @foreach($label as $value)
+                                <input type="checkbox" name="label[]" @if(in_array($value->id, $article->label_ids)) checked @endif value="{{ $value->id }}"> {{ $value->name }}&nbsp;&nbsp;
+                            @endforeach
+                        @endif
+                    </div>
+
                 </div>
                 <div class="form-group">
                     <label>分类</label>
@@ -61,6 +80,13 @@
                 <div class="form-group">
                     <label>描述</label>
                     <textarea name="describe" id="describe" cols="30" rows="10" class="form-control">{{ $article->describe }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>封面图</label>
+                    <input type="file" name="avatar">
+                    @if($article->cover)
+                        <img class="thumbnail img-responsive" src="{{ $article->cover }}" width="200" />
+                    @endif
                 </div>
                 <div class="form-group">
                     <label>是否置顶</label>

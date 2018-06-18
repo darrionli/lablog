@@ -43,6 +43,7 @@ Route::group(['prefix'=>'backend', 'namespace'=>'Backend', 'middleware'=>'admin.
         // 添加文章
         Route::get('create', 'ArticleController@create')->name('back.art.create');
         Route::post('store', 'ArticleController@store')->name('back.art.store');
+        Route::post('uploadimg', 'ArticleController@uploadImg')->name('back.art.upload');
         // 文章编辑
         Route::get('edit/{id}', 'ArticleController@edit')->name('back.art.edit');
         Route::get('markdown/{id}', 'ArticleController@markdown');

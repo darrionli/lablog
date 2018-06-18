@@ -15,10 +15,10 @@ class IndexController extends Controller
     //首页
     public function index()
     {
-        $article = Article::select('id', 'category_id', 'author', 'title', 'content', 'describe','created_at')
+        $article = Article::select('id', 'category_id', 'author', 'title', 'readed', 'cover', 'content', 'describe','created_at')
                     ->orderBy('created_at', 'desc')
                     ->with(['category', 'labels'])
-                    ->paginate(10);
+                    ->paginate(7);
         $config = cache('common:config');
         $tdk = [
             'title'=>$config->get('WEB_TITLE'),
