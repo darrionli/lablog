@@ -10,9 +10,9 @@
 <!-- 搜索目录 -->
 @if(!empty($tagName))
     <div class="description bg-white px-3 pt-3 pb-1">
-	    <p class="float-right mb-0">共<span class="mx-2 text-info">1</span>篇</p>
-	    <h1 class="f-16"><strong>标签分类：{{ $tagName }}</strong></h1>
-	    <p class="f-14">Linux 是目前公认的最好的开发环境，所以学习 Linux 对于编程来说非常有必要，这个节点就来分析 Linux 学习中遇到的问题和技巧。</p>
+	    {{--<p class="float-right mb-0">共<span class="mx-2 text-info">1</span>篇</p>--}}
+	    <h1 class="f-16"><strong>标签：{{ $tagName }}</strong></h1>
+        {{--<p class="f-16">找到 <span class="text-info">{{ $tagName }}</span> 下的文章：</p>--}}
 	</div>
 	<div class="py-2"></div>
 @endif
