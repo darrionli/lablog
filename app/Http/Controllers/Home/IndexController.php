@@ -122,7 +122,13 @@ class IndexController extends Controller
     // 关于
     public function about()
     {
-        $assign = ['category_id'=>'about'];
+        $config = cache('common:config');
+        $tdk = [
+            'title'=>'关于',
+            'desc'=>$config->get('WEB_DESCRIPTION'),
+            'keyword'=>$config->get('WEB_KEYWORDS'),
+        ];
+        $assign = ['category_id'=>'about', 'tdk'=>$tdk];
         return view('home.bs.about', $assign);
     }
 }

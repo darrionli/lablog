@@ -1,5 +1,11 @@
 @extends('layouts.home.index')
 
+@section('title', $tdk['title'])
+
+@section('keywords', $tdk['keyword'])
+
+@section('description', $tdk['desc'])
+
 @section('css')
     <link rel="stylesheet" href="/editor/css/editormd.preview.css">
 @stop
