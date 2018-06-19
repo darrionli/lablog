@@ -41,7 +41,7 @@ class ArticleController extends Controller
         $data['markdown'] = $data['content-markdown-doc'];
         unset($data['content-html-code'], $data['content-markdown-doc']);
         $article_label = [];
-        if(isset($data['label'])){
+        if(isset($data['label']) && $data['label']){
             $article_label = $data['label'];
             unset($data['label']);
         }
@@ -100,7 +100,7 @@ class ArticleController extends Controller
         $data['content'] = $data['content-html-code'];
         $data['markdown'] = $data['content-markdown-doc'];
         unset($data['content-html-code'], $data['content-markdown-doc']);
-        if(isset($data['label'])){
+        if(isset($data['label']) && $data['label']){
             $article_label = $data['label'];
             unset($data['label']);
             $label = new Article_label();
@@ -112,7 +112,7 @@ class ArticleController extends Controller
             $data['describe'] = mb_substr($description, 0, 200);
         }
         // 更新头像
-        if($data['avatar']){
+        if(isset($data['avatar']) && $data['avatar']){
             $rs = $uploader->save($data['avatar'], 'article', $id, 200);
             if ($rs) {
                 $data['cover'] = $rs['path'];

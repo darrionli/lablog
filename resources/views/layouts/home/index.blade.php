@@ -43,6 +43,9 @@
                                     </a>
                                 </li>
                             @endforeach
+                            <li class="nav-item @if($category_id == 'about') active @endif">
+                                <a class="nav-link" href="{{ route('home.about') }}">关于</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -118,4 +118,11 @@ class IndexController extends Controller
         $assign = ['tdk'=>$tdk, 'article'=>$article, 'tagName'=>$label->name,'category_id' => 'index'];
         return view('home.bs.index', $assign);
     }
+
+    // 关于
+    public function about()
+    {
+        $assign = ['category_id'=>'about'];
+        return view('home.bs.about', $assign);
+    }
 }
