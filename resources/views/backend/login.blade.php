@@ -81,7 +81,7 @@
 <!-- jQuery 3 -->
 <script src="/bootcss/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="/bootcss./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/bootcss/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="/bootcss/plugins/iCheck/icheck.min.js"></script>
 <script>
