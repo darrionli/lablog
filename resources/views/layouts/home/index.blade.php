@@ -134,8 +134,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <span>Copyright © 2018 <a href="http://lidicode.com/">李迪博客</a></span> | 
-                        <span><a href="http://www.miibeian.gov.cn/" target="_blank">@if(!empty($config['WEB_ICP_NUMBER'])) {{ $config['WEB_ICP_NUMBER'] }} @endif</a></span> | 
-                        <span>京公网安备11010802014853</span>
+                        <span><a href="http://www.miibeian.gov.cn/" target="_blank">@if(!empty($config['WEB_ICP_NUMBER'])) {{ $config['WEB_ICP_NUMBER'] }} @endif</a></span>
+                        {{--<span>京公网安备11010802014853</span>--}}
                     </div>
                     <div class="col-sm-12">
                         @if(!empty($config['ADMIN_EMAIL']))
