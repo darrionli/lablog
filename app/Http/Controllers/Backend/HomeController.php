@@ -16,7 +16,6 @@ class HomeController extends Controller
 
     public function index()
     {
-        echo 123;
-        //return view('layouts.backend.frame');
+        return view('layouts.backend.frame');
     }
 }
