@@ -21,9 +21,9 @@
         <header>
             <nav class="navbar navbar-expand-md fixed-top navbar-default topnav">
                 <div class="container">
-                    <div class="navbar-header">
+                    <div class="navbar-header mr-2">
                         <a href="/" class="navbar-brand">
-                            LidiCode
+                            李迪博客
                         </a>
                     </div>
 
