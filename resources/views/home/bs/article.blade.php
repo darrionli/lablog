@@ -43,7 +43,7 @@
         </div>
 
         <!-- 标签云 -->
-        <div class="tag-cloud my-4">
+        <div class="tag-cloud my-4 pl-3 pr-3">
             @foreach($data->labels as $v)
                 <a class="tags f-14" href="{{ url('tag', [$v->id]) }}">{{ $v->name }}</a>
             @endforeach
