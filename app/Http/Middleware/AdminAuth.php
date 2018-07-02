@@ -15,7 +15,7 @@ class AdminAuth
      */
     public function handle($request, Closure $next)
     {
-        if(session('backend.is_admin') !== 1) {
+        if(session('backend.is_admin') != 1) {
             return redirect('backend/login');
         }
         return $next($request);
