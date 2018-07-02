@@ -15,16 +15,20 @@
     <script src="/editor/js/editormd.js"></script>
     <script src="/bootcss/plugins/iCheck/icheck.min.js"></script>
     <script>
+        var editor;
         $(function() {
-            var editor = editormd("content", {
+            editor = editormd("content", {
                 width   : "100%",
                 height  : 500,
                 syncScrolling : "single",
                 path    : "/editor/lib/",
-                saveHTMLToTextarea : true,
+//                saveHTMLToTextarea : true,
                 imageUpload : true,
                 imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
                 imageUploadURL : "./php/upload.php",
+                onchange:function(){
+                    $("#markhtml").text(editor.getPreviewedHTML());
+                }
             });
         })
 
@@ -74,6 +78,7 @@
                 <div class="form-group">
                     <label>内容</label>
                     <div id="content" style="z-index:9999;"></div>
+                    <textarea name="markhtml" id="markhtml" cols="30" rows="10" style="display: none;"></textarea>
                 </div>
                 <div class="form-group">
                     <label>描述</label>

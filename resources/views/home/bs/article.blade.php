@@ -10,17 +10,6 @@
 <link rel="stylesheet" href="/editor/css/editormd.preview.css">
 @stop
 
-@section('js')
-<script src="/editor/js/jquery.min.js"></script>
-<script src="/editor/lib/marked.min.js"></script>
-<script src="/editor/lib/prettify.min.js"></script>
-<script src="/editor/js/editormd.js"></script>
-<script type="text/javascript">
-$(function(){
-    editormd.markdownToHTML("editormd-view");
-})
-</script>
-@stop
 
 @section('content')
 <!-- 正文 -->
@@ -41,8 +30,8 @@ $(function(){
             </span>
             {{--<a class="mx-2 to-com" href="#comment-block">评论 17</a>--}}
         </div>
-        <div id="editormd-view" class="article-body mt-4 f-17" style="line-height:1.8">
-            {!! $data->content !!}
+        <div class="article-body mt-4 f-17 editormd-html-preview" style="line-height:1.8">
+            {!! html_entity_decode($data->content) !!}
         </div>
 
         <!-- 版权注明 -->

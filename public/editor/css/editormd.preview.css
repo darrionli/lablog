@@ -3126,6 +3126,9 @@
   background: #f7f7f7;
   color: #666;
 }
+.editormd-preview-container blockquote p , .editormd-html-preview blockquote p {
+  margin: 0;
+}
 .editormd-preview-container p code, .editormd-html-preview p code {
   margin-left: 5px;
   margin-right: 4px;

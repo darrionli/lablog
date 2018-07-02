@@ -37,9 +37,9 @@ class ArticleController extends Controller
     public function store(Store $request, Article $article, ImageUploadHandler $uploader)
     {
         $data = $request->except('_token');
-        $data['content'] = $data['content-html-code'];
+        $data['content'] = htmlentities($data['markhtml']);
         $data['markdown'] = $data['content-markdown-doc'];
-        unset($data['content-html-code'], $data['content-markdown-doc']);
+        unset($data['markhtml'], $data['content-markdown-doc']);
         $article_label = [];
         if(isset($data['label']) && $data['label']){
             $article_label = $data['label'];
@@ -97,9 +97,9 @@ class ArticleController extends Controller
     public function update(Store $request, Article $article, ImageUploadHandler $uploader, $id)
     {
         $data = $request->except('_token');
-        $data['content'] = $data['content-html-code'];
+        $data['content'] = htmlentities($data['markhtml']);
         $data['markdown'] = $data['content-markdown-doc'];
-        unset($data['content-html-code'], $data['content-markdown-doc']);
+        unset($data['markhtml'], $data['content-markdown-doc']);
         if(isset($data['label']) && $data['label']){
             $article_label = $data['label'];
             unset($data['label']);
