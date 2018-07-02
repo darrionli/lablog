@@ -30,7 +30,7 @@
             </span>
             {{--<a class="mx-2 to-com" href="#comment-block">评论 17</a>--}}
         </div>
-        <div class="article-body mt-4 f-17 editormd-html-preview" style="line-height:1.8">
+        <div class="article-body mt-4 f-17 markdown-body editormd-html-preview" style="line-height:1.8">
             {!! html_entity_decode($data->content) !!}
         </div>
 
