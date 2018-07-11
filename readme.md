@@ -1,10 +1,10 @@
-<p align="center">Laravel-Blog</p>
+# lablog
 
 
 ## 链接
 
-- [博客](http://lidicode.com)
-- [github](https://github.com/darrionli/lablog)
+- 博客：[http://lidicode.com](http://lidicode.com)
+- github：[https://github.com/darrionli/lablog](https://github.com/darrionli/lablog)
 
 ## 简介
 
