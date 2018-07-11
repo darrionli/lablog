@@ -1,4 +1,6 @@
-# lablog
+## 简介
+
+个人博客项目，采用lavavel5.6开发
 
 
 ## 链接
@@ -6,9 +8,6 @@
 - 博客：[http://lidicode.com](http://lidicode.com)
 - github：[https://github.com/darrionli/lablog](https://github.com/darrionli/lablog)
 
-## 简介
-
-个人博客项目，采用lavavel5.6开发
 
 ## 主要功能
 
