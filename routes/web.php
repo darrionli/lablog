@@ -23,7 +23,7 @@ Route::group(['namespace'=>'Home'], function(){
 });
 
 // 前台登录
-Route::group(['namespace'=>'auth'], function(){
+Route::group(['namespace'=>'Auth'], function(){
     Route::get('oauth/weibo', 'OauthController@wbLogin')->name('oauth.weibo.login');
     Route::get('oauth/redirect_weibo', 'OauthController@callback_weibo');
     Route::get('oauth/logout', 'OauthController@logout')->name('oauth.logout');
