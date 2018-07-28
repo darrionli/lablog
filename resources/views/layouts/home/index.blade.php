@@ -48,6 +48,16 @@
                             </li>
                         </ul>
                     </div>
+                    @if(session('home.uid'))
+                        <div>
+                            <img style="height: 40px;" class="avatar-topnav" alt="{{ session('home.name') }}" src="{{ session('home.avatar') }}">
+                            <span>{{ session('home.name') }}</span> | 
+                            <span><a href="{{ route('oauth.logout') }}">退出</a></span>
+                        </div>
+
+                    @else
+                    <a id="oAuthLogin" class="btn btn-outline-info" href="javascript:void(0);">登录</a>
+                    @endif
                 </div>
             </nav>
         </header>
@@ -138,7 +148,7 @@
                     <div class="col-sm-12">
                         <span>Copyright © 2018 <a href="http://lidicode.com/">李迪博客</a></span> | 
                         <span><a href="http://www.miibeian.gov.cn/" target="_blank">@if(!empty($config['WEB_ICP_NUMBER'])) {{ $config['WEB_ICP_NUMBER'] }} @endif</a></span> | 
-                        <span><img src="/images/home/beian.png"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11011202001314" target="_blank">京公网安备 11011202001314号</a></span>         
+                        <span><img src="/images/home/beian.png"><a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank">京公网安备 11011202001314号</a></span>
                     </div>
                     <div class="col-sm-12">
                         @if(!empty($config['ADMIN_EMAIL']))
@@ -152,6 +162,24 @@
             </div>
         </div>
 
+        {{--登录modal--}}
+        <div id="oAuthModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="oAuthModalLiveLabel" data-filtered="filtered" aria-hidden="true">
+            <div class="modal-dialog" role="document" data-filtered="filtered">
+                <div class="modal-content" data-filtered="filtered">
+                    <div class="modal-header" data-filtered="filtered">
+                        <h1 class="modal-title" id="oAuthModalLiveLabel" data-filtered="filtered">登录</h1>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-filtered="filtered">
+                            <span aria-hidden="true" data-filtered="filtered">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" data-filtered="filtered">
+                        <a href="{{ route('oauth.weibo.login') }}"><img src="/images/home/sina-login.png" alt="微博登录"></a>
+                        <a href="" style="float: right;"><img src="/images/home/qq-login.png" alt="QQ登录"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -159,5 +187,12 @@
         <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         @yield('js')
         <script type="text/javascript" src="/js/home/lidicode.js?v=1.0"></script>
+        <script>
+            $(function(){
+                $("#oAuthLogin").on('click', function(){
+                    $("#oAuthModal").modal();
+                })
+            })
+        </script>
     </body>
 </html>

@@ -22,6 +22,13 @@ Route::group(['namespace'=>'Home'], function(){
     Route::get('about','IndexController@about')->name('home.about');
 });
 
+// 前台登录
+Route::group(['namespace'=>'auth'], function(){
+    Route::get('oauth/weibo', 'OauthController@wbLogin')->name('oauth.weibo.login');
+    Route::get('oauth/redirect_weibo', 'OauthController@callback_weibo');
+    Route::get('oauth/logout', 'OauthController@logout')->name('oauth.logout');
+});
+
 /**
  * 后台登录模块
  */
