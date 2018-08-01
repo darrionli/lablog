@@ -71,6 +71,12 @@ class OauthController extends Controller
         return redirect()->route('home.index');
     }
 
+    // qq回调
+    public function callback_qq()
+    {
+
+    }
+
     // 退出登录
     public function logout()
     {

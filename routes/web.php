@@ -26,6 +26,7 @@ Route::group(['namespace'=>'Home'], function(){
 Route::group(['namespace'=>'Auth'], function(){
     Route::get('oauth/weibo', 'OauthController@wbLogin')->name('oauth.weibo.login');
     Route::get('oauth/redirect_weibo', 'OauthController@callback_weibo');
+    Route::get('oauth/redirect_qq', 'OauthController@callback_qq');
     Route::get('oauth/logout', 'OauthController@logout')->name('oauth.logout');
 });
 
