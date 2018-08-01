@@ -37,12 +37,10 @@ class OauthController extends Controller
         $params['redirect_uri'] = 'http://www.lidicode.com/oauth/redirect_weibo';
         $url = "https://api.weibo.com/oauth2/access_token?" . http_build_query($params);
         $response = post_req($url, $params);
-        dd($response);
-        $response = http_request($url, '', 'POST');
-        if($response[1] != 200){
+        if(empty($response)){
             return abort(404);
         }
-        $token = json_decode($response[0], true);
+        $token = json_decode($response, true);
         // 获取用户信息
         $para = [];
         $para['access_token'] = $token['access_token'];

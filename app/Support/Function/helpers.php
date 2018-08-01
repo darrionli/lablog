@@ -74,29 +74,18 @@ if(!function_exists('http_request')){
 function post_req($url, $data='')
 {
     $postdata = http_build_query($data);
-
-
-
     $opts = array('http' =>
-
         array(
-
             'method'  => 'POST',
-
             'header'  => 'Content-type: application/x-www-form-urlencoded',
-
             'content' => $postdata
-
         )
-
     );
-
-
-
     $context = stream_context_create($opts);
-
-
-    $result = file_get_contents($url, false, $context);
-
-    return $result;
+    try{
+        $result = file_get_contents($url, false, $context);
+        return $result;
+    }catch (Exception $e){
+        return '';
+    }
 }
