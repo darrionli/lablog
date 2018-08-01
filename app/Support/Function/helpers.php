@@ -71,29 +71,32 @@ if(!function_exists('http_request')){
     }
 }
 
-function post_req($url, $post_data='', $timeout=5)
+function post_req($url, $data='')
 {
-    $ch = curl_init();
+    $postdata = http_build_query($data);
 
-    curl_setopt ($ch, CURLOPT_URL, $url);
 
-    curl_setopt ($ch, CURLOPT_POST, 1);
 
-    if($post_data != ''){
+    $opts = array('http' =>
 
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        array(
 
-    }
+            'method'  => 'POST',
 
-    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+            'header'  => 'Content-type: application/x-www-form-urlencoded',
 
-    curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+            'content' => $postdata
 
-    curl_setopt($ch, CURLOPT_HEADER, false);
+        )
 
-    $response = [];
-    $response[] = curl_exec($ch); // 返回值
-    $response[] = curl_getinfo($ch, CURLINFO_HTTP_CODE); // 状态码
-    curl_close ($ch);
-    return $response;
+    );
+
+
+
+    $context = stream_context_create($opts);
+
+
+    $result = file_get_contents($url, false, $context);
+
+    return $result;
 }
