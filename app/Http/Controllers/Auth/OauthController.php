@@ -71,10 +71,91 @@ class OauthController extends Controller
         return redirect()->route('home.index');
     }
 
-    // qq回调
-    public function callback_qq()
-    {
+    // qq登录
+    public function qqLogin(){
+        $config = cache('common:config');
+        $params = [];
+        $params['client_id'] = $config->get('QQ_APP_ID');
+        $params['redirect_uri'] = 'http://www.lidicode.com/oauth/redirect_qq';
+        $params['response_type'] = 'code';
+        $params['state'] = 3306;
+        $orizeUrl = "https://graph.qq.com/oauth2.0/authorize?" . http_build_query($params);
+        header("location:{$orizeUrl}");
+        exit();
+    }
 
+    // qq回调
+    public function callback_qq(Request $request)
+    {
+        $code = $request->input('code');
+        $state = $request->input('state');
+        if(empty($code) || empty($state)){
+            return redirect()->route('home.index');
+        }
+        if($state!=3306){
+            return abort(404);
+        }
+        $config = cache('common:config');
+        $params = [
+            'grant_type'=>'authorization_code',
+            'client_id'=>$config->get('QQ_APP_ID'),
+            'client_secret'=>$config->get('QQ_APP_KEY'),
+            'code'=>$code,
+            'redirect_uri'=>'http://www.lidicode.com/oauth/redirect_qq'
+        ];
+        $url = "https://graph.qq.com/oauth2.0/token?" . http_build_query($params);
+        $request_token = post_req($url, $params);
+        if($request_token){
+            $token = explode("&", $request_token);
+            $token_array = explode("=", $token[0]);
+            $access_token = isset($token_array[1]) ? $token_array[1] : '';
+            if(!$access_token){
+                return redirect()->route('home.index');
+            }
+            // 获取用户openid
+            $para = [];
+            $para['access_token'] = $access_token;
+            $url = "https://graph.qq.com/oauth2.0/me?" . http_build_query($para);
+            $userinfo = http_request($url, '', 'GET');
+            if($userinfo[1]!=200){
+                return redirect()->route('home.index');
+            }
+            $openarr = explode(" ", $userinfo[0]);
+            $open = json_decode($openarr[1], true);
+            $openid = isset($open['openid']) ? $open['openid'] :'';
+            if(!$openid){
+                return redirect()->route('home.index');
+            }
+            // 获取用户信息
+            $params = [];
+            $params['access_token'] = $access_token;
+            $params['oauth_consumer_key'] =$config->get('QQ_APP_ID');
+            $params['openid'] = $openid;
+            $url = "https://graph.qq.com/user/get_user_info?" . http_build_query($params);
+            $userdata = http_request($url, '', 'GET');
+            if($userdata[1] != 200){
+                return abort(404);
+            }
+            $qq = json_decode($userdata[0], true);
+            $data = [];
+            $data['name'] = $qq['nickname'];
+            $data['avatar'] = $qq['figureurl_qq_2'];
+            $ret = Oauth_user::where(['openid'=>$openid, 'type'=>1])->first();
+            if($ret){
+                $data['login_times'] = time();
+                Oauth_user::where(['openid'=>$openid, 'type'=>1])->update($data);
+            }else{
+                $data['type'] = 1;
+                $data['openid'] = $openid;
+                $data['login_times'] = time();
+                Oauth_user::create($data);
+            }
+            $storeData['home'] = ['name'=>$data['name'], 'avatar'=>$data['avatar']];
+            session($storeData);
+            return redirect()->route('home.index');
+        }else{
+            return redirect()->route('home.index');
+        }
     }
 
     // 退出登录

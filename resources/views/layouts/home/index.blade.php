@@ -48,7 +48,7 @@
                             </li>
                         </ul>
                     </div>
-                    @if(session('home.uid'))
+                    @if(session('home.name'))
                         <div>
                             <img style="height: 40px;" class="avatar-topnav" alt="{{ session('home.name') }}" src="{{ session('home.avatar') }}">
                             <span>{{ session('home.name') }}</span> | 
@@ -174,7 +174,7 @@
                     </div>
                     <div class="modal-body" data-filtered="filtered">
                         <a href="{{ route('oauth.weibo.login') }}"><img src="/images/home/sina-login.png" alt="微博登录"></a>
-                        <a href="" style="float: right;"><img src="/images/home/qq-login.png" alt="QQ登录"></a>
+                        <a href="{{ route('oauth.qq.login') }}" style="float: right;"><img src="/images/home/qq-login.png" alt="QQ登录"></a>
                     </div>
                 </div>
             </div>
