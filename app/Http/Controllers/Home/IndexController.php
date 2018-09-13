@@ -18,7 +18,7 @@ class IndexController extends Controller
         $article = Article::select('id', 'category_id', 'author', 'title', 'readed', 'cover', 'content', 'describe','created_at')
                     ->orderBy('created_at', 'desc')
                     ->with(['category', 'labels'])
-                    ->paginate(7);
+                    ->paginate(5);
         $config = cache('common:config');
         $tdk = [
             'title'=>$config->get('WEB_TITLE'),
